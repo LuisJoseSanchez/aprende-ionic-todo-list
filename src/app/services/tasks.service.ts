@@ -32,4 +32,8 @@ export class TasksService {
     t.id = this.taskCounter++;
     this.tasks.push(t);
   }
+
+  public deleteTask(id: number) {
+    this.tasks = this.tasks.filter(t => t.id != id);
+  }
 }
