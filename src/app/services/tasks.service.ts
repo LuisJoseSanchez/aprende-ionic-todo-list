@@ -7,6 +7,7 @@ import { Task } from '../model/task';
 export class TasksService {
 
   tasks: Task[] = [];
+  taskCounter: number = 2;
 
   constructor() {
     this.tasks = [
@@ -25,5 +26,10 @@ export class TasksService {
 
   public getTasks(): Task[] {
     return this.tasks;
+  }
+
+  public saveTask(t: Task) {
+    t.id = this.taskCounter++;
+    this.tasks.push(t);
   }
 }
