@@ -28,9 +28,18 @@ export class TasksService {
     return this.tasks;
   }
 
+  public getTask(id: number): Task {
+    return { ...this.tasks.filter(t => t.id === id)[0] };
+  }
+
   public saveTask(t: Task) {
-    t.id = this.taskCounter++;
-    this.tasks.push(t);
+    if (t.id == undefined) { // tarea nueva
+      t.id = this.taskCounter++;
+      this.tasks.push(t);
+    } else { // edición de una tarea existente
+      this.deleteTask(t.id);
+      this.tasks.push(t);
+    }
   }
 
   public deleteTask(id: number) {

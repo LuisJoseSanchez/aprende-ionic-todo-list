@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/model/task';
 import { TasksService } from 'src/app/services/tasks.service';
 
@@ -14,10 +14,15 @@ export class EditPage implements OnInit {
   
   constructor(
     private tasksService: TasksService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (id != null) {
+      this.task = this.tasksService.getTask(+id)
+    }
   }
 
   saveTask() {
