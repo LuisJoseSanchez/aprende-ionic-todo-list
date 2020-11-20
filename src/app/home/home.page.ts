@@ -17,8 +17,8 @@ export class HomePage {
     private alertController: AlertController
   ) { }
 
-  goEditTask() {
-    this.router.navigateByUrl('/edit');
+  goEditTask(id: number) {
+    this.router.navigateByUrl(`/edit${id != undefined ? '/' + id : ''}`);
   }
 
   deleteTask(id: number) {
